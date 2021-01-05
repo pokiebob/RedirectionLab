@@ -6,7 +6,30 @@ public class PigLatin {
 		String vowels = "aeiou";
 
 		if (vowels.indexOf(str.charAt(0)) != -1) {
-			return str + "ay";
+			return str + "hay";
+		} else {
+			return str.substring(1, str.length()) + str.charAt(0) + "ay";
+		}
+	}
+	
+	private static boolean contains(String[] arr, String str) {
+		for (String s : arr) {
+			if (str.equals(s)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	public static String pigLatin(String s) {
+		String str = s.toLowerCase();
+		
+		String[] digraphs = {"bl", "br", "ch", "ck", "cl", "cr", "dr", "fl", "fr", "gh", "gl", "gr", "ng", "ph", "pl", "pr", "qu", "sc", "sh", "sk", "sl", "sm", "sn", "sp", "st", "sw", "th", "tr", "tw", "wh", "wr"};
+		String vowels = "aeiou";
+
+		if (contains(digraphs, s.substring(0,2))) {
+			return str.substring(2, str.length()) + str.substring(0, 2) + "ay";
+		} else if (vowels.indexOf(str.charAt(0)) != -1) {
+			return str + "hay";
 		} else {
 			return str.substring(1, str.length()) + str.charAt(0) + "ay";
 		}
@@ -17,5 +40,11 @@ public class PigLatin {
 		System.out.println(pigLatinSimple("pie"));
 		System.out.println(pigLatinSimple("david"));
 		System.out.println(pigLatinSimple("aaron"));
+
+		System.out.println(pigLatin("the"));
+		System.out.println(pigLatin("check"));
+		System.out.println(pigLatin("skee"));
+		System.out.println(pigLatin("emu"));
+		System.out.println(pigLatin("grade"));
 	}
 }
